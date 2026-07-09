@@ -4,14 +4,7 @@ pipeline{
 
     stages{
 
-        stage('Checkout'){
-
-            steps{
-
-                 git 'https://github.com/BhavyaPriyanka/sample-maven-app.git'
-
-            }
-        }
+        
 
         stage('Build'){
 
