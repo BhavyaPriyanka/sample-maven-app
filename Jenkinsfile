@@ -25,7 +25,7 @@ pipeline{
                         defaultValue: '1.0.0',
                         description: 'Application Version'
                     )
-
+            }
             stages{
 
                 stage('Pipeline Info'){
@@ -38,7 +38,7 @@ pipeline{
                         echo "Company : ${COMPANY}"
 
                         echo "Environment : ${params.ENV}"
-                        echo "Version : ${paramas.VERSION}"
+                        echo "Version : ${params.VERSION}"
 
                         sh '''
                             echo "=======SHELL========"
@@ -52,12 +52,12 @@ pipeline{
                             echo VERSION=$VERSION
 
                             java -version
-                            maven -version
+                            mvn -version
 
                           '''
                     }
                 }
-            }
+            
 
             }
 }
