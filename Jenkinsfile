@@ -39,7 +39,28 @@ pipeline{
 
                 stage('Build'){
                     steps{
-                        buildApp()
+                        buildApp(
+                                tool: "mvn",
+                                branch: "main"
+
+                        )
+                    }
+                }
+
+                stage('Test'){
+                    steps{
+
+                        testApp()
+                    }
+
+                }
+
+                stage('Deploy'){
+                    steps{
+                        deployApp(
+                            environment: "dev"
+
+                        )
                     }
                 }
 
