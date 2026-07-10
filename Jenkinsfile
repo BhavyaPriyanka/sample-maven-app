@@ -13,6 +13,14 @@ pipeline{
                 COMPANY = 'local'
             }
 
+            options{
+                disableConcurrentBuilds()
+                timeout(time: 10, unit: 'MINUTES')
+                timestamps()
+            }
+
+          
+
             parameters{
                     choice(
                         name: 'ENV',
@@ -27,6 +35,15 @@ pipeline{
                     )
             }
             stages{
+
+                stage('Build'){
+                    steps{
+                        sh '''
+                            echo "Building $APP_NAME"
+                            mvn clean package
+                            '''
+                    }
+                }
 
                 stage('Pipeline Info'){
                     steps{
@@ -55,6 +72,24 @@ pipeline{
                             mvn -version
 
                           '''
+                    }
+                }
+
+                post{
+
+                    always{
+
+                        echo "Pipeline finished"
+                    }
+
+                    success{
+
+                        echo "Build success"
+                    }
+
+                    failure{
+
+                        echo "Build failure"
                     }
                 }
             
