@@ -1,3 +1,4 @@
+@Library('company-jenkins-library') _
 pipeline{
 
     agent any
@@ -38,10 +39,7 @@ pipeline{
 
                 stage('Build'){
                     steps{
-                        sh '''
-                            echo "Building $APP_NAME"
-                            mvn clean package
-                            '''
+                        buildApp()
                     }
                 }
 
